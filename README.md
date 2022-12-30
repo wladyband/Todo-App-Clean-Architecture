@@ -1,16 +1,18 @@
-# todo
+# Todo App - Clean Architecture
 
-A new Flutter project.
+## Architecture
 
-## Getting Started
+Keeping your code clean and tested are the two most important development practices. In Flutter, this is even more true than with other frameworks. On one hand, it's nice to hack a quick app together, on the other hand, larger projects start falling apart when you mix the business logic everywhere. Even state management patterns like BLoC are not sufficient in themselves to allow for easily extendable codebase.
 
-This project is a starting point for a Flutter application.
+This is where we can make use of clean architecture and test driven development. AWe should all try to separate code into independent layers and depend on abstractions instead of concrete implementations.
 
-A few resources to get you started if this is your first Flutter project:
+High-Level overview of the architecture design we will use in this Project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image info](images/Architecture.png)
+
+
+
+For state Management we will use the Bloc Pattern.
+
+Our Backend will be built in Firebase. Auth + Realtime Database
