@@ -6,8 +6,37 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     final themeData = Theme.of(context);
+
+    late String email;
+    late String password;
+
+    String? validateEmail(String? input) {
+      const emailRegex = r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
+      if (input == null || input.isEmpty) {
+        return "please enter email";
+      } else if (RegExp(emailRegex).hasMatch(input)) {
+        email = input;
+        return null;
+      } else {
+        return "Invalid e-mail";
+      }
+    }
+
+    String? validatePassword(String? input) {
+      if (input == null || input.isEmpty) {
+        return "please enter password";
+      } else if (input.length >= 6) {
+        password = input;
+        return null;
+      } else {
+        return "short password";
+      }
+    }
+
     return Form(
+      key: formKey,
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
@@ -31,20 +60,24 @@ class SignUpForm extends StatelessWidget {
             height: 80,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.disabled,
             cursorColor: Colors.white,
             decoration: const InputDecoration(
               labelText: "E-Mail",
             ),
+            validator: validateEmail,
           ),
           const SizedBox(
             height: 20,
           ),
           TextFormField(
+            autovalidateMode: AutovalidateMode.disabled,
             cursorColor: Colors.white,
             obscureText: true,
             decoration: const InputDecoration(
               labelText: "Password",
             ),
+            validator: validatePassword,
           ),
           const SizedBox(
             height: 40,
@@ -53,6 +86,20 @@ class SignUpForm extends StatelessWidget {
             buttonText: "Sign In",
             callBack: () {
               print("Sign in pressed");
+
+              if (formKey.currentState!.validate()) {
+                print("validated");
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: Colors.redAccent,
+                    content: Text(
+                      "invalid input",
+                      style: themeData.textTheme.bodyText1,
+                    ),
+                  ),
+                );
+              }
             },
           ),
           const SizedBox(
