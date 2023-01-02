@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:todo/presentation/signup/signup_page.dart';
-import 'package:todo/theme.dart';
+import 'package:todo/injection.dart' as di;
 
-void main() {
+import 'package:todo/theme.dart';
+import 'package:todo/ui/presentation/signup/signup_page.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(const MyApp());
 }
 
