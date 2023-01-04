@@ -8,6 +8,7 @@ import 'package:todo/ui/presentation/signup/signup_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  
   await di.init();
   runApp(const MyApp());
 }
