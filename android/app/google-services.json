@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "419427863862",
+    "project_id": "flutterwladitodo",
+    "storage_bucket": "flutterwladitodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419427863862:android:9f14726d3336bdd6d4b797",
+        "android_client_info": {
+          "package_name": "com.bandeira.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419427863862-04c07kmmc17svf922dpbff8maq1243iv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bandeira.todo",
+            "certificate_hash": "98ee6a77df040e82e36c97543f0899ae5cf385fb"
+          }
+        },
+        {
+          "client_id": "419427863862-qtql6aha94ceodu9iq2oic3pqn9ba69e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8VMvp12QajGFjGcG4lF76tPnw3GCCeZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419427863862-qtql6aha94ceodu9iq2oic3pqn9ba69e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
