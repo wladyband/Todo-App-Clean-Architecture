@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/aplication/auth/signUpForm/sign_up_form_bloc.dart';
 import 'package:todo/core/failures/auth_failures.dart';
+import 'package:todo/ui/presentation/routes/router.gr.dart';
 import 'package:todo/ui/presentation/signup/widgets/signin_register_button.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -60,7 +62,9 @@ class SignUpForm extends StatelessWidget {
                       backgroundColor: Colors.redAccent,
                       content:
                           Text(mapFailureMessage(failure), style: themeData.textTheme.bodyText1)));
-                }, (_) => print("logado"))); // TODO: implement navegação para a pagina hoje
+                }, (_) => {
+              AutoRouter.of(context).push(const HomePageRoute())
+            }));
       },
       builder: (context, state) {
         return Form(

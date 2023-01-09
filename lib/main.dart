@@ -9,7 +9,6 @@ import 'package:todo/ui/presentation/routes/router.gr.dart' as r;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   await di.init();
   runApp(MyApp());
 }
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-
     );
   }
 }
