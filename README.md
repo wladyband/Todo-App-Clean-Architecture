@@ -16,3 +16,7 @@ High-Level overview of the architecture design we will use in this Project:
 For state Management we will use the Bloc Pattern.
 
 Our Backend will be built in Firebase. Auth + Realtime Database
+
+## Comandos importantes do projeto
+
+flutter packages pub run build_runner build 

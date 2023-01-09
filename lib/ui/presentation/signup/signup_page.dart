@@ -4,8 +4,8 @@ import 'package:todo/aplication/auth/signUpForm/sign_up_form_bloc.dart';
 import 'package:todo/injection.dart';
 import 'package:todo/ui/presentation/signup/widgets/signup_form.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
