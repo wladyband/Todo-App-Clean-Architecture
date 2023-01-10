@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:todo/core/failures/auth_failures.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
@@ -8,6 +9,7 @@ part 'sign_up_form_event.dart';
 
 part 'sign_up_form_state.dart';
 
+@injectable
 class SignUpFormBloc extends Bloc<SignUpFormEvent, SignUpFormState> {
   final AuthRepository authRepository;
 

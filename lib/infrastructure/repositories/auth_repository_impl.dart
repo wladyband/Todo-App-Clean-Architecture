@@ -1,12 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:todo/core/failures/auth_failures.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
 
+@Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
-  final FirebaseAuth firebaseAuth;
+  final firebaseAuth = FirebaseAuth.instance;
 
-  AuthRepositoryImpl({required this.firebaseAuth});
+  AuthRepositoryImpl();
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
@@ -40,4 +42,8 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
+  @override
+  Future<void> signOut() => Future.wait([
+    firebaseAuth.signOut(),
+  ]);
 }

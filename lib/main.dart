@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/aplication/auth/authBloc/auth_bloc.dart';
 import 'package:todo/injection.dart' as di;
 
 import 'package:todo/theme.dart';
 import 'package:todo/ui/presentation/routes/router.gr.dart' as r;
 
+import 'injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,17 +18,22 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final _appRouter = r.AppRouter();
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      routerDelegate: _appRouter.delegate(),
-      title: 'Todo App',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.dark,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) => sl<AuthBloc>())
+      ],
+      child: MaterialApp.router(
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        routerDelegate: _appRouter.delegate(),
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.dark,
+        title: 'Todo App',
+      ),
     );
   }
 }
