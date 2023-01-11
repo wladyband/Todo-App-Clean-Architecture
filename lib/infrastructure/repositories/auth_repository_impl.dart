@@ -2,7 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:todo/core/failures/auth_failures.dart';
+import 'package:todo/domain/entities/user.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
+import 'package:todo/infrastructure/models/firebare_user_mapper.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
@@ -46,4 +48,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> signOut() => Future.wait([
     firebaseAuth.signOut(),
   ]);
+
+  @override
+  Option<CustomUser> getSignedInUser() => optionOf(firebaseAuth.currentUser
+      ?.toDomain()); // some(CustomUser(id: UniqueId.fromUniqueString(_firebaseAuth.currentUser!.uid)));
 }
