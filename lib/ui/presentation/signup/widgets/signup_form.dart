@@ -63,7 +63,7 @@ class SignUpForm extends StatelessWidget {
                       content:
                           Text(mapFailureMessage(failure), style: themeData.textTheme.bodyText1)));
                 }, (_) => {
-              AutoRouter.of(context).push(const HomePageRoute())
+              AutoRouter.of(context).replace(const HomePageRoute())
             }));
       },
       builder: (context, state) {
