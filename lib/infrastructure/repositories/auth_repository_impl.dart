@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:todo/core/failures/auth_failures.dart';
 import 'package:todo/domain/entities/user.dart';
 import 'package:todo/domain/repositories/auth_repository.dart';
-import 'package:todo/infrastructure/models/firebare_user_mapper.dart';
+import 'package:todo/infrastructure/extensions/firebare_user_mapper.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
