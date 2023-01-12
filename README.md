@@ -22,4 +22,4 @@ Our Backend will be built in Firebase. Auth + Realtime Database
 flutter packages pub run build_runner build 
 
 flutter packages pub run build_runner build --delete-conflicting-outputs
-flutter packages pub run build_runner watch --delete-conflicting-outputs
+dart pub global activate flutterfire_cli

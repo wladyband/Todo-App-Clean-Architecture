@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/aplication/auth/authBloc/auth_bloc.dart';
+import 'package:todo/firebase_options.dart';
 import 'package:todo/injection.dart' as di;
 
 import 'package:todo/theme.dart';
@@ -11,7 +12,9 @@ import 'injection.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
   await di.init();
   runApp(MyApp());
 }

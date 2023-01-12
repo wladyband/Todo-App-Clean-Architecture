@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>419427863862-sljue8e0nk0bhbnva64t1edc5iul5pth.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.419427863862-sljue8e0nk0bhbnva64t1edc5iul5pth</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>419427863862-04c07kmmc17svf922dpbff8maq1243iv.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAtV_qaEHlz1FaTmkYNxspsTuvrHql7VmE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>419427863862</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.bandeira.todo</string>
+	<key>PROJECT_ID</key>
+	<string>flutterwladitodo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutterwladitodo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:419427863862:ios:ddbe53897bbc1191d4b797</string>
+</dict>
+</plist>
