@@ -54,6 +54,7 @@ class SignUpForm extends StatelessWidget {
     }
 
     return BlocConsumer<SignUpFormBloc, SignUpFormState>(
+      
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
             () => {}, //! if none
