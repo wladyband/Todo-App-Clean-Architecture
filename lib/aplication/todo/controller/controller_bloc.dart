@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:todo/core/failures/todo_failures.dart';
 import 'package:todo/domain/entities/todo.dart';
@@ -10,6 +11,7 @@ part 'controller_event.dart';
 
 part 'controller_state.dart';
 
+@injectable
 class ControllerBloc extends Bloc<ControllerEvent, ControllerState> {
   final TodoRepository todoRepository;
 
