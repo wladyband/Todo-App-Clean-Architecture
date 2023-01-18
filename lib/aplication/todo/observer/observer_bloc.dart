@@ -28,11 +28,8 @@ class ObserverBloc extends Bloc<ObserverEvent, ObserverState> {
     });
 
     on<TodosUpdatedEvent>((event, emit) {
-      event.failureOrTodos.fold((failure) {
-        emit(ObserverFailure(todoFailure: failure));
-      }, (todos) {
-        emit(ObserverSuccess(todos: todos));
-      });
+      event.failureOrTodos.fold((failures) => emit(ObserverFailure(todoFailure: failures)),
+          (todos) => emit(ObserverSuccess(todos: todos)));
     });
   }
 
