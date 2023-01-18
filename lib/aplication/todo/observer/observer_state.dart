@@ -9,7 +9,7 @@ class ObserverInitial extends ObserverState {}
 class ObserverLoading extends ObserverState {}
 
 class ObserverFailure extends ObserverState {
-  final TodoFailures todoFailure;
+  final TodoFailure todoFailure;
   ObserverFailure({required this.todoFailure});
 }
 

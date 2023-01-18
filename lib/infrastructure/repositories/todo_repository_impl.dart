@@ -12,7 +12,7 @@ class TodoRepositoryImpl implements TodoRepository {
   final firestore = FirebaseFirestore.instance;
 
   @override
-  Future<Either<TodoFailures, Unit>> create(Todo todo) async {
+  Future<Either<TodoFailure, Unit>> create(Todo todo) async {
     try {
       final userDoc = await firestore.userDocument();
       final todoModel = TodoModel.fromDomain(todo);
@@ -30,7 +30,7 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<TodoFailures, Unit>> delete(Todo todo) async {
+  Future<Either<TodoFailure, Unit>> delete(Todo todo) async {
     try {
       final userDoc = await firestore.userDocument();
       final todoModel = TodoModel.fromDomain(todo);
@@ -49,7 +49,7 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<TodoFailures, Unit>> update(Todo todo) async {
+  Future<Either<TodoFailure, Unit>> update(Todo todo) async {
     try {
       final userDoc = await firestore.userDocument();
       final todoModel = TodoModel.fromDomain(todo);
@@ -69,13 +69,13 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Stream<Either<TodoFailures, List<Todo>>> watchAll() async* {
+  Stream<Either<TodoFailure, List<Todo>>> watchAll() async* {
     //yield left(const InsufficientPermissions());
     // users/{user ID}/notes/{todo ID}
     final userDoc = await firestore.userDocument();
     yield* userDoc.todoCollection
         .snapshots()
-        .map((snapshot) => right<TodoFailures, List<Todo>>(snapshot.docs
+        .map((snapshot) => right<TodoFailure, List<Todo>>(snapshot.docs
         .map((doc) => TodoModel.fromFirestore(doc).toDomain()).toList()))
         .handleError((e) {
       if (e is FirebaseException) {

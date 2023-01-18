@@ -1,7 +1,7 @@
-abstract class TodoFailures {}
+abstract class TodoFailure {}
 
-class UnexpectedFailure extends TodoFailures {}
+class UnexpectedFailure extends TodoFailure {}
 
-class InsufficientPermisssons extends TodoFailures {}
+class InsufficientPermisssons extends TodoFailure {}
 
-class unableToUpdate extends TodoFailures {}
+class unableToUpdate extends TodoFailure {}
