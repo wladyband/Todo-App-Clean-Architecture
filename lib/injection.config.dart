@@ -11,6 +11,7 @@ import 'package:todo/aplication/auth/authBloc/auth_bloc.dart' as _i8;
 import 'package:todo/aplication/auth/signUpForm/sign_up_form_bloc.dart' as _i5;
 import 'package:todo/aplication/todo/controller/controller_bloc.dart' as _i9;
 import 'package:todo/aplication/todo/observer/observer_bloc.dart' as _i10;
+import 'package:todo/aplication/todo/todoForm/todo_form_bloc.dart' as _i11;
 import 'package:todo/domain/repositories/auth_repository.dart' as _i3;
 import 'package:todo/domain/repositories/todo_repository.dart' as _i6;
 import 'package:todo/infrastructure/repositories/auth_repository_impl.dart'
@@ -41,5 +42,7 @@ _i1.GetIt $initGetIt(
       () => _i9.ControllerBloc(todoRepository: gh<_i6.TodoRepository>()));
   gh.factory<_i10.ObserverBloc>(
       () => _i10.ObserverBloc(todoRepository: gh<_i6.TodoRepository>()));
+  gh.factory<_i11.TodoFormBloc>(
+      () => _i11.TodoFormBloc(todoRepository: gh<_i6.TodoRepository>()));
   return getIt;
 }
