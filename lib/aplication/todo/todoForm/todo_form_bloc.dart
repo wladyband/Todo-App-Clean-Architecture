@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:todo/core/failures/todo_failures.dart';
 import 'package:todo/domain/entities/todo.dart';
+import 'package:todo/domain/entities/todo_color.dart';
 import 'package:todo/domain/repositories/todo_repository.dart';
 
 part 'todo_form_event.dart';
@@ -16,13 +17,18 @@ part 'todo_form_state.dart';
 @injectable
 class TodoFormBloc extends Bloc<TodoFormEvent, TodoFormState> {
   final TodoRepository todoRepository;
+
   TodoFormBloc({required this.todoRepository}) : super(TodoFormState.initial()) {
     on<InitializeTodoDetailPage>((event, emit) {
       if (event.todo != null) {
         emit(state.copyWith(todo: event.todo, isEditing: true));
-      }else{
+      } else {
         emit(state);
       }
+    });
+
+    on<ColorChangedEvent>((event, emit) {
+      emit(state.copyWith(todo: state.todo.copyWith(color: TodoColor(color: event.color))));
     });
   }
 }

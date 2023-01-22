@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/aplication/todo/todoForm/todo_form_bloc.dart';
+import 'package:todo/ui/presentation/todo_detail/widgets/color_field.dart';
 
 class TodoForm extends StatelessWidget {
   TodoForm({Key? key}) : super(key: key);
@@ -76,6 +77,10 @@ class TodoForm extends StatelessWidget {
                   maxLines: 8,
                   minLines: 5,
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ColorField(color: state.todo.color),
               ],
             ),
           ),
