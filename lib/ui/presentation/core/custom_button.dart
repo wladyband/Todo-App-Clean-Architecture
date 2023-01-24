@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SignInRegisterButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String buttonText;
   final Function callBack;
-  const SignInRegisterButton({Key? key, required this.buttonText, required this.callBack})
+  const CustomButton({Key? key, required this.buttonText, required this.callBack})
       : super(key: key);
 
   @override

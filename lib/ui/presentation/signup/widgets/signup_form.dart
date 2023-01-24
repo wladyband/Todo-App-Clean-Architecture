@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/aplication/auth/signUpForm/sign_up_form_bloc.dart';
 import 'package:todo/core/failures/auth_failures.dart';
 import 'package:todo/ui/presentation/routes/router.gr.dart';
-import 'package:todo/ui/presentation/signup/widgets/signin_register_button.dart';
+import 'package:todo/ui/presentation/core/custom_button.dart';
 
 class SignUpForm extends StatelessWidget {
   SignUpForm({Key? key}) : super(key: key);
@@ -54,7 +54,7 @@ class SignUpForm extends StatelessWidget {
     }
 
     return BlocConsumer<SignUpFormBloc, SignUpFormState>(
-
+      listenWhen: (p,c) => p.authFailureOrSuccessOption != c.authFailureOrSuccessOption,
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
             () => {}, //! if none
@@ -117,7 +117,7 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              SignInRegisterButton(
+              CustomButton(
                 buttonText: "Sign In",
                 callBack: () {
                   if (formKey.currentState!.validate()) {
@@ -141,7 +141,7 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SignInRegisterButton(
+              CustomButton(
                 buttonText: "Register",
                 callBack: () {
                   if (formKey.currentState!.validate()) {

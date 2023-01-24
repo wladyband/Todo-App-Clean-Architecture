@@ -30,5 +30,26 @@ class TodoFormBloc extends Bloc<TodoFormEvent, TodoFormState> {
     on<ColorChangedEvent>((event, emit) {
       emit(state.copyWith(todo: state.todo.copyWith(color: TodoColor(color: event.color))));
     });
+
+    on<SafePressedEvent>((event, emit) async {
+      Either<TodoFailure, Unit>? failureOrSuccess;
+      emit(state.copyWith(isSaving: true, failureOrSuccessOption: none()));
+      if (event.title != null && event.body != null ) { //&& event.color != null
+        final Todo editedTodo = state.todo
+            .copyWith(
+           // color: TodoColor(color: event.color!),
+            title: event.title, body: event.body);
+        if (state.isEditing) {
+          failureOrSuccess = await todoRepository.update(editedTodo);
+        } else {
+          failureOrSuccess = await todoRepository.create(editedTodo);
+        }
+      }
+      emit(state.copyWith(
+        isSaving: false,
+        showErrorMessages: true,
+        failureOrSuccessOption: optionOf(failureOrSuccess),
+      ));
+    });
   }
 }

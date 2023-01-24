@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/aplication/todo/todoForm/todo_form_bloc.dart';
+import 'package:todo/ui/presentation/core/custom_button.dart';
 import 'package:todo/ui/presentation/todo_detail/widgets/color_field.dart';
 
 class TodoForm extends StatelessWidget {
@@ -16,23 +17,23 @@ class TodoForm extends StatelessWidget {
     late String body;
 
     String? validateTitle(String? input) {
-      if (input == null || input == input.isEmpty) {
+      if (input == null || input.isEmpty) {
         return "please enter a title";
-      }else if(input.length < 30){
+      } else if (input.length < 30) {
         title = input;
         return null;
-      }else{
+      } else {
         return "title too long";
       }
     }
 
     String? validateBody(String? input) {
-      if (input == null || input == input.isEmpty) {
+      if (input == null || input.isEmpty) {
         return "please enter a description";
-      }else if(input.length < 300){
+      } else if (input.length < 300) {
         body = input;
         return null;
-      }else{
+      } else {
         return "body too long";
       }
     }
@@ -54,6 +55,7 @@ class TodoForm extends StatelessWidget {
               children: [
                 TextFormField(
                   validator: validateTitle,
+                  cursorColor: Colors.white,
                   controller: textEditingControllerTitle,
                   decoration: InputDecoration(
                       labelText: "Title",
@@ -68,6 +70,7 @@ class TodoForm extends StatelessWidget {
                 ),
                 TextFormField(
                   validator: validateBody,
+                  cursorColor: Colors.white,
                   controller: textEditingControllerBody,
                   decoration: InputDecoration(
                       labelText: "Body",
@@ -81,6 +84,31 @@ class TodoForm extends StatelessWidget {
                   height: 20,
                 ),
                 ColorField(color: state.todo.color),
+                const SizedBox(
+                  height: 20,
+                ),
+                CustomButton(
+                  buttonText: "Safe",
+                  callBack: () {
+                    if (formKey.currentState!.validate()) {
+                      BlocProvider.of<TodoFormBloc>(context)
+                          .add(SafePressedEvent(title: title, body: body)); //color: body,
+                    } else {
+                      BlocProvider.of<TodoFormBloc>(context)
+                          .add(SafePressedEvent(title: null, body: null));
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.redAccent,
+                          content: Text(
+                              "Invalid input",
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                ),
               ],
             ),
           ),

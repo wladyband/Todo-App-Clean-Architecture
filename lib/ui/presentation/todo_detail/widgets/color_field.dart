@@ -23,6 +23,7 @@ class ColorField extends StatelessWidget {
             BlocProvider.of<TodoFormBloc>(context).add(ColorChangedEvent(color: itemColor));
           },
           child: Material(
+            color: itemColor,
             elevation: 10,
             shape: CircleBorder(
               side: BorderSide(
