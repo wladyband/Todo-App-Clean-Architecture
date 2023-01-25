@@ -61,6 +61,52 @@ class TodoItem extends StatelessWidget {
           child: Container(
             decoration:
                 BoxDecoration(color: todo.color.color, borderRadius: BorderRadius.circular(15)),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    todo.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: themeData.textTheme.headline1!
+                        .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    todo.body,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: themeData.textTheme.bodyText2!.copyWith(fontSize: 16),
+                  ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width: 25,
+                        height: 25,
+                        child: Transform.scale(
+                          scale: 1.3,
+                          child: Checkbox(
+                            shape: const CircleBorder(),
+                            activeColor: Colors.white,
+                              checkColor: themeData.scaffoldBackgroundColor,
+                              value: todo.done,
+                              onChanged: (value) {
+                                if (value != null) {
+                                  BlocProvider.of<ControllerBloc>(context)
+                                      .add(UpdateTodoEvent(todo: todo, done: value));
+                                }
+                              }),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
         ));
   }

@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
           ),
           body: HomeBody(),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Theme.of(context).colorScheme.secondary,
+            backgroundColor: Colors.white,
             onPressed: () {
               AutoRouter.of(context).push(TodoDetailPageRoute(todo: null));
             },

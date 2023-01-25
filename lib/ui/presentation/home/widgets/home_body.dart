@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/aplication/todo/observer/observer_bloc.dart';
-import 'package:todo/aplication/todo/observer/observer_bloc.dart';
-import 'package:todo/ui/presentation/home/widgets/todo_card.dart';
 import 'package:todo/ui/presentation/home/widgets/todo_item.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({Key? key}) : super(key: key);
 
   static const double spacing = 20;
+
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
@@ -30,6 +29,7 @@ class HomeBody extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(spacing),
             child: GridView.builder(
+                physics: const BouncingScrollPhysics(),
                 itemCount: state.todos.length,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 200,
@@ -38,7 +38,9 @@ class HomeBody extends StatelessWidget {
                     mainAxisSpacing: spacing),
                 itemBuilder: (context, index) {
                   final todo = state.todos[index];
-                  return TodoItem(todo: todo,);
+                  return TodoItem(
+                    todo: todo,
+                  );
                 }),
           );
         }
