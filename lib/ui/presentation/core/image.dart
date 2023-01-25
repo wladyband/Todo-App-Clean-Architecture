@@ -2,6 +2,6 @@ const String OFFICE = "assets/office.png";
 enum BannerImages {
   images(OFFICE);
 
-  final String value;
-  const BannerImages(this.value);
+  final String assets;
+  const BannerImages(this.assets);
 }

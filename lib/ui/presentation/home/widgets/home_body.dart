@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/aplication/auth/authBloc/auth_bloc.dart';
 import 'package:todo/aplication/todo/observer/observer_bloc.dart';
 import 'package:todo/ui/presentation/core/image.dart';
+import 'package:todo/ui/presentation/home/widgets/flexible_space.dart';
 import 'package:todo/ui/presentation/home/widgets/todo_item.dart';
 
 class HomeBody extends StatelessWidget {
@@ -37,27 +38,7 @@ class HomeBody extends StatelessWidget {
                   expandedHeight: 280,
                   backgroundColor: themeData.scaffoldBackgroundColor,
                   pinned: true,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Image.asset(BannerImages.images.value),
-                    titlePadding: const EdgeInsets.only(left: 20, bottom: 20),
-                    title: Row(
-                      children: [
-                        Text(
-                          "TODO",
-                          textScaleFactor: 2,
-                          style:
-                              themeData.textTheme.headline6!.copyWith(fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                        const Spacer(),
-                        IconButton(
-                            onPressed: () {
-                              BlocProvider.of<AuthBloc>(context).add(SignOutPressedEvent());
-                            },
-                            icon: const Icon(Icons.exit_to_app))
-                      ],
-                    ),
-                  ),
+                  flexibleSpace: const FlexibleSpace(),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(spacing),
