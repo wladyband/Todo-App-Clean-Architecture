@@ -50,14 +50,14 @@ class HomePage extends StatelessWidget {
           }),
         ],
         child: Scaffold(
-          appBar: AppBar(
+          /*appBar: AppBar(
             leading: IconButton(
                 onPressed: () {
                   BlocProvider.of<AuthBloc>(context).add(SignOutPressedEvent());
                 },
                 icon: Icon(Icons.exit_to_app)),
             title: Text("tudo"),
-          ),
+          ),*/
           body: HomeBody(),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.white,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/aplication/auth/authBloc/auth_bloc.dart';
 import 'package:todo/aplication/todo/observer/observer_bloc.dart';
+import 'package:todo/ui/presentation/core/image.dart';
 import 'package:todo/ui/presentation/home/widgets/todo_item.dart';
 
 class HomeBody extends StatelessWidget {
@@ -26,32 +28,58 @@ class HomeBody extends StatelessWidget {
             child: Text("Failure"),
           );
         } else if (state is ObserverSuccess) {
-          return Padding(
-            padding: const EdgeInsets.all(spacing),
-            child: GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: state.todos.length,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    crossAxisSpacing: spacing,
-                    childAspectRatio: 4 / 5,
-                    mainAxisSpacing: spacing),
-                itemBuilder: (context, index) {
-                  final todo = state.todos[index];
-                  return TodoItem(
-                    todo: todo,
-                  );
-                }),
+          return SafeArea(
+            child: CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverAppBar(
+                  collapsedHeight: 70,
+                  expandedHeight: 280,
+                  backgroundColor: themeData.scaffoldBackgroundColor,
+                  pinned: true,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Image.asset(BannerImages.images.value),
+                    titlePadding: const EdgeInsets.only(left: 20, bottom: 20),
+                    title: Row(
+                      children: [
+                        Text(
+                          "TODO",
+                          textScaleFactor: 2,
+                          style:
+                              themeData.textTheme.headline6!.copyWith(fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                        const Spacer(),
+                        IconButton(
+                            onPressed: () {
+                              BlocProvider.of<AuthBloc>(context).add(SignOutPressedEvent());
+                            },
+                            icon: const Icon(Icons.exit_to_app))
+                      ],
+                    ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(spacing),
+                  sliver: SliverGrid(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final todo = state.todos[index];
+                        return TodoItem(todo: todo);
+                      },
+                      childCount: state.todos.length,
+                    ),
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        crossAxisSpacing: spacing,
+                        childAspectRatio: 4 / 5,
+                        mainAxisSpacing: spacing),
+                  ),
+                ),
+              ],
+            ),
           );
         }
-
-        // ListView.builder(
-        //     itemCount: state.todos.length,
-        //     itemBuilder: (context, index){
-        //       final todo = state.todos[index];
-        //       return TodoCard(todo: todo);
-        //     }
-        // );
 
         return Container();
       },
