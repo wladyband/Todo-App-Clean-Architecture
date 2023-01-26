@@ -44,7 +44,7 @@ class HomeBody extends StatelessWidget {
                 SliverPadding(
                   padding: const EdgeInsets.only(left: spacing, right: spacing),
                   sliver: SliverToBoxAdapter(
-                    child: ProgressBar(todo: state.todos),
+                    child: ProgressBar(todos: state.todos),
                   ),
                 ),
                 SliverPadding(
