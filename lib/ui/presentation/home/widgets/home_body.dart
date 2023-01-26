@@ -4,6 +4,7 @@ import 'package:todo/aplication/auth/authBloc/auth_bloc.dart';
 import 'package:todo/aplication/todo/observer/observer_bloc.dart';
 import 'package:todo/ui/presentation/core/image.dart';
 import 'package:todo/ui/presentation/home/widgets/flexible_space.dart';
+import 'package:todo/ui/presentation/home/widgets/progress_bar.dart';
 import 'package:todo/ui/presentation/home/widgets/todo_item.dart';
 
 class HomeBody extends StatelessWidget {
@@ -39,6 +40,12 @@ class HomeBody extends StatelessWidget {
                   backgroundColor: themeData.scaffoldBackgroundColor,
                   pinned: true,
                   flexibleSpace: const FlexibleSpace(),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.only(left: spacing, right: spacing),
+                  sliver: SliverToBoxAdapter(
+                    child: ProgressBar(todo: state.todos),
+                  ),
                 ),
                 SliverPadding(
                   padding: const EdgeInsets.all(spacing),
