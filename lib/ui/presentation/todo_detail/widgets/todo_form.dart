@@ -45,18 +45,19 @@ class TodoForm extends StatelessWidget {
         textEditingControllerBody.text = state.todo.body;
       },
       builder: (context, state) {
+
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
           child: Form(
             key: formKey,
             autovalidateMode:
                 state.showErrorMessages ? AutovalidateMode.always : AutovalidateMode.disabled,
-            child: Column(
+            child: ListView(
               children: [
                 TextFormField(
+                  controller: textEditingControllerTitle,
                   validator: validateTitle,
                   cursorColor: Colors.white,
-                  controller: textEditingControllerTitle,
                   decoration: InputDecoration(
                       labelText: "Title",
                       counterText: "",
@@ -101,7 +102,7 @@ class TodoForm extends StatelessWidget {
                         SnackBar(
                           backgroundColor: Colors.redAccent,
                           content: Text(
-                              "Invalid input",
+                            "Invalid input",
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                         ),
