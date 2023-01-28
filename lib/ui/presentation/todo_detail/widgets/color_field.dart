@@ -43,9 +43,7 @@ class ColorField extends StatelessWidget {
             width: 10,
           );
         },
-        itemCount: TodoColor.predefinedColors.length,
-
-      ),
+        itemCount: TodoColor.predefinedColors.length),
     );
   }
 }

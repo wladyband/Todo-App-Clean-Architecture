@@ -5,7 +5,8 @@ import 'package:todo/ui/presentation/core/custom_button.dart';
 import 'package:todo/ui/presentation/todo_detail/widgets/color_field.dart';
 
 class TodoForm extends StatelessWidget {
-  TodoForm({Key? key}) : super(key: key);
+
+  const TodoForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,10 @@ class TodoForm extends StatelessWidget {
     String? validateTitle(String? input) {
       if (input == null || input.isEmpty) {
         return "please enter a title";
-      } else if (input.length < 30) {
+      }else if(input.length < 30){
         title = input;
         return null;
-      } else {
+      }else{
         return "title too long";
       }
     }
@@ -30,10 +31,10 @@ class TodoForm extends StatelessWidget {
     String? validateBody(String? input) {
       if (input == null || input.isEmpty) {
         return "please enter a description";
-      } else if (input.length < 300) {
+      }else if(input.length < 300){
         body = input;
         return null;
-      } else {
+      }else{
         return "body too long";
       }
     }
@@ -45,49 +46,51 @@ class TodoForm extends StatelessWidget {
         textEditingControllerBody.text = state.todo.body;
       },
       builder: (context, state) {
-
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
           child: Form(
             key: formKey,
             autovalidateMode:
-                state.showErrorMessages ? AutovalidateMode.always : AutovalidateMode.disabled,
+                state.showErrorMessages
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
             child: ListView(
               children: [
                 TextFormField(
                   controller: textEditingControllerTitle,
-                  validator: validateTitle,
                   cursorColor: Colors.white,
-                  decoration: InputDecoration(
-                      labelText: "Title",
-                      counterText: "",
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
+                  validator: validateTitle,
                   maxLength: 100,
                   maxLines: 2,
                   minLines: 1,
+                  decoration: InputDecoration(
+                      labelText: "Title",
+                      counterText: "",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8))),
+
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
-                  validator: validateBody,
-                  cursorColor: Colors.white,
                   controller: textEditingControllerBody,
-                  decoration: InputDecoration(
-                      labelText: "Body",
-                      counterText: "",
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
+                  cursorColor: Colors.white,
+                  validator: validateBody,
                   maxLength: 300,
                   maxLines: 8,
                   minLines: 5,
+                  decoration: InputDecoration(
+                      labelText: "Body",
+                      counterText: "",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8))),
+
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 ColorField(color: state.todo.color),
-                const SizedBox(
-                  height: 20,
-                ),
                 CustomButton(
                   buttonText: "Safe",
                   callBack: () {
@@ -104,12 +107,10 @@ class TodoForm extends StatelessWidget {
                           content: Text(
                             "Invalid input",
                             style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        ),
-                      );
+                          )));
                     }
                   },
-                ),
+                )
               ],
             ),
           ),

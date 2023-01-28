@@ -14,29 +14,33 @@ class TodoDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themaData = Theme.of(context);
+
     return BlocProvider(
-      create: (context) => sl<TodoFormBloc>()..add(InitializeTodoDetailPage(todo: todo)),
+      create: (context) =>
+          sl<TodoFormBloc>()..add(InitializeTodoDetailPage(todo: todo)),
       child: BlocConsumer<TodoFormBloc, TodoFormState>(
         listenWhen: (p, c) => p.failureOrSuccessOption != c.failureOrSuccessOption,
         listener: (context, state) {
-          state.failureOrSuccessOption.fold(() => {}, (eitherFailureOrSuccess) {
-            eitherFailureOrSuccess.fold((failure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(backgroundColor: Colors.redAccent, content: Text("failure")));
-            }, (_) {
-              Navigator.of(context).popUntil((route) => route.settings.name == HomePageRoute.name);
-            });
-          });
+          state.failureOrSuccessOption.fold(
+           () => {},
+          (eitherFailureOrSuccess) => eitherFailureOrSuccess.fold(
+          (failure) =>  ScaffoldMessenger.of(context).showSnackBar(
+                const  SnackBar(
+                  content: Text("failure"),
+                  backgroundColor: Colors.redAccent )),
+             (_) => Navigator.of(context).popUntil(
+                    (route) => route.settings.name == HomePageRoute.name)));
         },
-        builder: (context, state) {
+        builder: (context, state){
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
               title: Text(todo == null ? "Create Todo" : "Edit Todo"),
             ),
             body: Stack(
-              children: [TodoForm(), SafeInProgressOverLay(isSaving: state.isSaving)],
+              children: [
+                const TodoForm(),
+                SafeInProgressOverLay(isSaving: state.isSaving)],
             ),
           );
         },
