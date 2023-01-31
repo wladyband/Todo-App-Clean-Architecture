@@ -40,7 +40,7 @@ class TodoForm extends StatelessWidget {
     }
 
     return BlocConsumer<TodoFormBloc, TodoFormState>(
-      listenWhen: (p, c) => p.isEditing != c.isEditing,
+      listenWhen: (previous, current) => previous.isEditing != current.isEditing,
       listener: (context, state) {
         textEditingControllerTitle.text = state.todo.title;
         textEditingControllerBody.text = state.todo.body;

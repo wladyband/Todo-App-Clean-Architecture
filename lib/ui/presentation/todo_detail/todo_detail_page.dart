@@ -19,7 +19,7 @@ class TodoDetailPage extends StatelessWidget {
       create: (context) =>
           sl<TodoFormBloc>()..add(InitializeTodoDetailPage(todo: todo)),
       child: BlocConsumer<TodoFormBloc, TodoFormState>(
-        listenWhen: (p, c) => p.failureOrSuccessOption != c.failureOrSuccessOption,
+        listenWhen: (previous, current) => previous.failureOrSuccessOption != current.failureOrSuccessOption,
         listener: (context, state) {
           state.failureOrSuccessOption.fold(
            () => {},
